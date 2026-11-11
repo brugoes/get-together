@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#50C878">
+<meta name="theme-color" content="#1E8449">
 <title>Get Together!</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap">
 <style>
-:root{--g:#50C878;--ink:#111;--card:#fff;--mut:#777;--line:#e4e4e4;--soft:#e9f9ef;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--g:#1E8449;--ink:#111;--card:#fff;--mut:#666;--line:#e4e4e4;--soft:#e9f9ef;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#f2f2f2;--card:#1d1d1d;--mut:#aaa;--line:#333;--soft:#14301f}}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--g);font-family:Fredoka,system-ui,sans-serif;color:var(--ink);-webkit-text-size-adjust:100%}
@@ -13,19 +13,19 @@ body{margin:0;background:var(--g);font-family:Fredoka,system-ui,sans-serif;color
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--g);padding:10px 0}
 header .logo{font-size:32px;transition:opacity .25s}
 .hero{display:none}
-@media(min-width:768px){.hero{display:flex;align-items:center;justify-content:center;min-height:52vh}.hero .logo{font-size:clamp(64px,10vw,120px)}body.hero-on header .logo{opacity:0}}
+@media(min-width:768px){.hero{display:flex;align-items:center;justify-content:center;min-height:24vh}.hero .logo{font-size:clamp(44px,5.5vw,76px)}body.hero-on header .logo{opacity:0}}
 main{max-width:720px;margin:0 auto;padding:8px 14px 60px}
 .card{background:var(--card);border-radius:22px;padding:20px;margin:0 0 16px;box-shadow:0 6px 24px rgba(0,0,0,.12)}
 h2{margin:0 0 12px;font-size:24px}h3{margin:18px 0 8px;font-size:18px}
 label{display:block;margin:12px 0 0;font-weight:500;font-size:15px}.opt{color:var(--mut);font-weight:400}
 input,textarea,select{width:100%;font:inherit;font-size:16px;padding:12px;margin-top:5px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink)}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--g)}
-::placeholder{color:#aaa;opacity:1}
+::placeholder{color:#767676;opacity:1}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.row{grid-template-columns:1fr}}
 .btn{display:block;width:100%;margin-top:16px;padding:14px;border:0;border-radius:999px;background:var(--g);color:#fff;font:inherit;font-weight:600;font-size:17px;cursor:pointer}
 .btn.alt{background:var(--soft);color:var(--ink)}.btn.sm{display:inline-block;width:auto;margin:0;padding:8px 16px;font-size:15px}.btn:disabled{opacity:.5}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}.duo .btn{margin-top:12px}.duo .on{outline:4px solid var(--ink)}
-.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs button{flex:1;padding:12px;border:0;border-radius:999px;font:inherit;font-weight:600;background:rgba(255,255,255,.35);color:#fff;cursor:pointer}.tabs .on{background:#fff;color:#111}
+.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs button{flex:1;padding:12px;border:0;border-radius:999px;font:inherit;font-weight:600;background:rgba(0,0,0,.22);color:#fff;cursor:pointer}.tabs .on{background:#fff;color:#111}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;-webkit-overflow-scrolling:touch}
 .chip{flex:1 1 0;min-width:0;padding:8px 2px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:14px;cursor:pointer;text-align:center}.chip.on{background:var(--g);border-color:var(--g);color:#fff}.chip b{display:block}
 .grid{max-height:300px;overflow-y:auto;border:2px solid var(--line);border-radius:14px;user-select:none;-webkit-user-select:none}
@@ -39,6 +39,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--g)}
 .toast{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:20;background:var(--card);color:var(--ink);border-radius:16px;padding:14px 14px 14px 52px;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:560px;margin:auto}
 .toast button{position:absolute;left:8px;top:8px;width:36px;height:36px;border:0;border-radius:50%;background:#000;color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .big{font-size:20px;text-align:center}a.btn{text-decoration:none;text-align:center;color:#fff}a.btn.alt{color:var(--ink)}footer{text-align:center;color:#000;font-size:12px;line-height:1.5;padding:0 14px calc(24px + env(safe-area-inset-bottom,0px))}footer a{color:#000;text-decoration:underline}.xb{border:0;background:var(--line);color:var(--ink);width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:15px;line-height:1;padding:0;margin-right:6px;vertical-align:middle}.xb:hover{background:#000;color:#fff}
+.err{color:#a4161a;background:#fdecea;border-left:5px solid #a4161a;border-radius:10px;padding:10px 12px;margin-top:14px;font-size:15px;font-weight:500}.bad{border-color:#c0392b!important;background:#fff5f4!important;color:#111}.daybar{background:var(--g);color:#fff;border-radius:10px;padding:8px 12px;font-weight:600;margin:6px 0}.whole .btn{margin-top:8px;font-size:15px;border:2px solid var(--g)}.whole .btn.on{background:var(--g);color:#fff}.btn:disabled{cursor:wait}.c.on{font-weight:600}.c{font-size:13px}
 </style></head>
 <body class="hero-on">
 <header><h1 class="logo">Get Together!</h1></header>
@@ -68,41 +69,47 @@ const upd=(p,o)=>fs.doc(p).update(o);
 function watch(id,cb){
  unsub.push(fs.doc('events/'+id).onSnapshot(s=>cb(s.exists?s.data():null,null),()=>cb(null,null)));
  unsub.push(fs.collection('events/'+id+'/r').onSnapshot(q=>cb(undefined,q.docs.map(d=>({id:d.id,...d.data()})))))}
-/* date/time picker: tap start then end, or drag with a mouse */
+/* date/time picker: tap the first and last half-hour, or drag with a mouse */
 function picker(el,o){const S=o.slots,A=o.allowed;
- const N=A?[...new Set(A.map(s=>s.d))].sort():null,maxWk=A?Math.ceil(N.length/7)-1:51;let wk=0;const view=()=>A?N.slice(wk*7,wk*7+7):Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()+wk*7+i);return iso(d)});
+ const N=A?[...new Set(A.map(s=>s.d))].sort():null,maxWk=A?Math.ceil(N.length/7)-1:51;let wk=0;
+ const view=()=>A?N.slice(wk*7,wk*7+7):Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()+wk*7+i);return iso(d)});
  let day=view()[0],pend=null,dn=null;
- const wins=()=>A?A.filter(s=>s.d==day):[{a:420,b:1380}];
+ const wins=()=>A?A.filter(s=>s.d==day):[{d:day,a:420,b:1380}];
  const inA=m=>wins().some(w=>m>=w.a&&m<w.b);
- 
+ const covers=w=>S.some(s=>s.d==w.d&&s.a<=w.a&&s.b>=w.b);
  function put1(d,a,b){let n={d,a,b};for(let i=S.length-1;i>=0;i--){const s=S[i];if(s.d==d&&s.a<=n.b&&s.b>=n.a){n.a=Math.min(n.a,s.a);n.b=Math.max(n.b,s.b);S.splice(i,1)}}S.push(n);S.sort(cmp)}
- function add(a,b){if(a>b)[a,b]=[b,a];if(a==b)return;const bak=S.slice();
+ function cut(d,a,b){for(let i=S.length-1;i>=0;i--){const s=S[i];if(s.d==d&&s.a<b&&s.b>a){S.splice(i,1);if(s.a<a)S.push({d,a:s.a,b:a});if(s.b>b)S.push({d,a:b,b:s.b})}}S.sort(cmp)}
+ function add(a,b){if(a>b)[a,b]=[b,a];if(a==b)return;const bak=S.slice();if(o.replace)S.splice(0,S.length);
   wins().forEach(w=>{const x=Math.max(a,w.a),y=Math.min(b,w.b);if(x<y)put1(day,x,y)});
   if(S.length>o.max){S.splice(0,S.length,...bak);toast('You can pick up to '+o.max+' time windows.')}
   pend=null;draw();o.onchange&&o.onchange()}
- function draw(){const lo=Math.min(...wins().map(w=>w.a)),hi=Math.max(...wins().map(w=>w.b));let g='';for(let m=lo;m<hi;m+=30){const on=S.some(s=>s.d==day&&m>=s.a&&m<s.b);
-   g+=`<div class="c${on?' on':''}${pend===m?' pd':''}${inA(m)?'':' off'}" data-m="${m}">${m%60?'':fmt(m)}</div>`}
-  el.innerHTML=`<div class="nav"><button type="button" class="car" data-wk="-1" aria-label="Previous week" ${wk?'':'disabled'}>‹</button><span>${esc(dl(view()[0]))} – ${esc(dl(view()[view().length-1]))}</span><button type="button" class="car" data-wk="1" aria-label="Next week" ${wk<maxWk?'':'disabled'}>›</button></div><div class="chips">${view().map(d=>`<button type="button" class="chip${d==day?' on':''}" data-d="${d}"><b>${dl(d).split(',')[0]}</b>${dl(d).split(', ')[1]}</button>`).join('')}</div>
-  <div class="how"><b>${pend!=null?'Now tap the time you’re free until':'Drag to select the times you’re free'}</b><span>${pend!=null?'Tap an end time to finish.':'On a computer, click and drag down the times. On a phone, tap a start time, then tap an end time.'}</span></div>
+ function draw(){const lo=Math.min(...wins().map(w=>w.a)),hi=Math.max(...wins().map(w=>w.b));let g='';
+  for(let m=lo;m<hi;m+=30){const on=S.some(s=>s.d==day&&m>=s.a&&m<s.b);
+   g+=`<div class="c${on?' on':''}${pend===m?' pd':''}${inA(m)?'':' off'}" data-m="${m}">${fmt(m)} – ${fmt(m+30)}</div>`}
+  const v=view();
+  el.innerHTML=`<div class="nav"><button type="button" class="car" data-wk="-1" aria-label="Previous week" ${wk?'':'disabled'}>‹</button><span>${esc(dl(v[0]))} – ${esc(dl(v[v.length-1]))}</span><button type="button" class="car" data-wk="1" aria-label="Next week" ${wk<maxWk?'':'disabled'}>›</button></div>
+  <div class="chips">${v.map(d=>`<button type="button" class="chip${d==day?' on':''}" data-d="${d}"><b>${dl(d).split(',')[0]}</b>${dl(d).split(', ')[1]}${S.some(s=>s.d==d)?' ✓':''}</button>`).join('')}</div>
+  <div class="daybar">Choosing times for ${esc(dl(day))}</div>
+  ${A?`<div class="whole">${wins().map(w=>`<button type="button" class="btn alt${covers(w)?' on':''}" data-w="${w.a}-${w.b}">${covers(w)?'✓ ':''}I’m free the whole window on ${esc(dl(day))}: ${fmt(w.a)} – ${fmt(w.b)}</button>`).join('')}<div class="hint">This button applies to ${esc(dl(day))} only. Pick each date you’re free.</div></div>`:''}
+  <div class="how"><b>${pend!=null?'Starting at '+fmt(pend)+'. Now tap the last half-hour you’re free.':'Select the times you’re free on '+esc(dl(day))}</b><span>${pend!=null?'The block you tap is included. Tap the same block again to select just that half-hour.':'On a phone, tap the first half-hour you’re free, then tap the last one. On a computer, click and drag. Both blocks you pick are included.'}</span></div>
   <div class="grid">${g}</div>
-  
-  
-  <div style="margin-top:10px">${S.length?S.map((s,i)=>`<span class="tag">${esc(sl(s))}<button type="button" aria-label="Remove" data-x="${i}">×</button></span>`).join(''):'<span class="hint">No times yet.</span>'}</div>
+  <div style="margin-top:10px">${S.length?S.map((s,i)=>`<span class="tag">${esc(sl(s))}<button type="button" aria-label="Remove ${esc(sl(s))}" data-x="${i}">×</button></span>`).join(''):'<span class="hint">No times picked yet.</span>'}</div>
   <div class="hint">${S.length} of ${o.max} max${o.min?' (at least '+o.min+')':''}</div>`}
- el.onclick=e=>{const t=e.target.closest('[data-d],[data-m],[data-x],[data-wk]');if(!t)return;
-  if(t.dataset.wk){wk=Math.max(0,Math.min(maxWk,wk+ +t.dataset.wk));day=view()[0];pend=null;draw()}else if(t.dataset.d){day=t.dataset.d;pend=null;draw()}
+ el.onclick=e=>{const t=e.target.closest('[data-d],[data-m],[data-x],[data-wk],[data-w]');if(!t)return;
+  if(t.dataset.wk){wk=Math.max(0,Math.min(maxWk,wk+ +t.dataset.wk));day=view()[0];pend=null;draw()}
+  else if(t.dataset.d){day=t.dataset.d;pend=null;draw()}
+  else if(t.dataset.w){const[a,b]=t.dataset.w.split('-').map(Number),w={d:day,a,b};if(covers(w))cut(day,a,b);else add(a,b);pend=null;draw();o.onchange&&o.onchange()}
   else if(t.dataset.x!=null){S.splice(+t.dataset.x,1);draw();o.onchange&&o.onchange()}
-  else if(t.dataset.add!=null){const a=tm($('.ms',el).value),b=tm($('.me',el).value);if(a==null||b==null||b<=a)return toast('Enter a start and a later end time.');
-   if(!wins().some(w=>a<w.b&&b>w.a))return toast('That time is outside the host’s options.');add(a,b)}
   else{const m=+t.dataset.m;if(!inA(m))return;if(pend==null){pend=m;draw()}else add(Math.min(pend,m),Math.max(pend,m)+30)}};
  el.onpointerdown=e=>{const c=e.target.closest('[data-m]');dn=c&&e.pointerType==='mouse'?+c.dataset.m:null};
  el.onpointerup=e=>{if(dn==null)return;const c=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-m]');const a=dn;dn=null;
   if(c&&+c.dataset.m!==a&&inA(a)){const b=+c.dataset.m;pend=null;add(Math.min(a,b),Math.max(a,b)+30)}};
  draw()}
-/* best two-hour windows */
-function best(ev,R){const c=[];(ev.slots||[]).forEach(w=>{for(let m=w.a;m+120<=w.b;m+=30){const ok=R.filter(r=>(r.slots||[]).some(s=>s.d==w.d&&s.a<=m&&s.b>=m+120));c.push({d:w.d,a:m,b:m+120,ok})}});
- c.sort((x,y)=>y.ok.length-x.ok.length||cmp(x,y));const out=[];
- for(const x of c){if(x.ok.length&&!out.some(o=>o.d==x.d&&x.a<o.b&&x.b>o.a))out.push(x);if(out.length==4)break}return out}
+/* best times: any stretch of time, ranked by how many people are free */
+function best(ev,R){const out=[];(ev.slots||[]).forEach(w=>{let run=null;const flush=()=>{if(run&&run.ok.length)out.push(run);run=null};
+ for(let m=w.a;m<w.b;m+=30){const ok=R.filter(r=>(r.slots||[]).some(s=>s.d==w.d&&s.a<=m&&s.b>=m+30)),key=ok.map(r=>r.id).sort().join(',');
+  if(run&&run.key==key)run.b=m+30;else{flush();run={d:w.d,a:m,b:m+30,ok,key}}}flush()});
+ out.sort((x,y)=>y.ok.length-x.ok.length||(y.b-y.a)-(x.b-x.a)||cmp(x,y));return out.slice(0,4)}
 let mailer='default';try{mailer=localStorage.getItem('gt-mailer')||'default'}catch(e){}
 const ios=/iPhone|iPad|iPod/i.test(navigator.userAgent),phone=/iPhone|iPad|Android|Mobi/i.test(navigator.userAgent);
 const url=(c,body,sub='')=>{const b=encodeURIComponent(body),t=encodeURIComponent(sub);
@@ -116,38 +123,54 @@ document.addEventListener('change',e=>{if(e.target.classList?.contains('mp')){ma
 const e164=v=>{const t=(v||'').trim(),d=t.replace(/\D/g,'');if(!d)return '';if(t.startsWith('+'))return '+'+d;if(d.length==10)return '+1'+d;if(d.length==11&&d[0]=='1')return '+'+d;return ''};
 const rk=()=>Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>(b%36).toString(36)).join('');
 const sha=async t=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t))),b=>b.toString(16).padStart(2,'0')).join('');
-const mine=()=>{try{const L=JSON.parse(localStorage.getItem('gt-hosted')||'[]');return L.length?`<section class="card"><h3 style="margin-top:0">Your Get Togethers</h3>${L.map(x=>`<div class="who"><span>${esc(x.t)}</span><a class="btn sm" href="#host-${x.id}-${x.hk}">See responses</a></div>`).join('')}</section>`:''}catch(e){return ''}};
+const mine=()=>{try{const L=JSON.parse(localStorage.getItem('gt-hosted')||'[]');return L.length?`<section class="card"><h3 style="margin-top:0">Your Get Togethers</h3>${L.map(x=>`<div class="who"><span>${esc(x.t)}</span><a class="btn sm" href="#h-${x.id}-${x.hk}">See responses</a></div>`).join('')}</section>`:''}catch(e){return ''}};
 const parse=v=>[...new Set(v.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean))].slice(0,50);
 /* views */
-let D={title:'',desc:'',host:'',email:'',phone:'',slots:[]};
+const err=(b,msg,ids=[])=>{document.querySelectorAll('.bad').forEach(x=>x.classList.remove('bad'));let d=b.previousElementSibling;if(!d||!d.classList.contains('err')){d=document.createElement('div');d.className='err';d.setAttribute('role','alert');b.before(d)}d.textContent=msg;ids.forEach(i=>$('#'+i)?.classList.add('bad'));const f=ids.length?$('#'+ids[0]):null;(f||d).scrollIntoView({behavior:'smooth',block:'center'});f&&f.focus({preventScroll:true});return false};
+const clr=b=>{const d=b.previousElementSibling;if(d&&d.classList.contains('err'))d.remove();document.querySelectorAll('.bad').forEach(x=>x.classList.remove('bad'))};
+const run=async(b,label,fn)=>{if(b.disabled)return;clr(b);const t=b.textContent;b.disabled=true;b.textContent=label;try{if((await fn())===false){b.disabled=false;b.textContent=t}}catch(e){console.error(e);b.disabled=false;b.textContent=t;err(b,'Something went wrong and nothing was saved. Check your connection and try again.')}};
+const okC=v=>/\S+@\S+\.\S+/.test(v)||!!e164(v);
+let D={title:'',desc:'',host:'',email:'',phone:'',loc:'',slots:[]};
 function route(){unsub.forEach(f=>f());unsub=[];memSubs=[];const[v,id,rid]=location.hash.slice(1).split('-');scrollTo(0,0);
- v=='join'&&id?attendee(id):v=='rsvp'&&id?rsvp(id,rid):v=='host'&&id?dash(id,rid):form()}
+ (v=='j'||v=='join')&&id?attendee(id):(v=='r'||v=='rsvp')&&id?rsvp(id,rid):(v=='h'||v=='host')&&id?dash(id,rid):form()}
 addEventListener('hashchange',route);
 function form(){app.innerHTML=mine()+`<section class="card"><h2>Hosting a party? Let’s Get Together!</h2>
 <label>Get Together! title <b>*</b><input id="t" placeholder="Janet’s Birthday Party!"></label>
 <label>Event description <span class="opt">(optional)</span><textarea id="d" rows="4" placeholder="Let’s get together for Janet’s 40th birthday! Select a time and date that works best for you so we can maximize who can attend. No gifts needed!"></textarea></label>
+<label>Location or address <span class="opt">(optional)</span><input id="l" placeholder="123 Main St, or Joe’s Pizza" autocomplete="street-address"></label>
+<div class="hint">Friends only see the address after you pick a final date.</div>
 <div class="row"><label>Your name <b>*</b><input id="n" placeholder="Peter" autocomplete="given-name"></label>
 <label>Your email <b>*</b><input id="e" type="email" placeholder="peter@email.com" autocomplete="email"></label></div>
 <label>Your phone number <span class="opt">(optional, lets friends text you)</span><input id="p" type="tel" placeholder="(555) 123-4567" autocomplete="tel"></label>
 <h3>Select some dates that work for you</h3><div id="pk"></div>
 <button class="btn" id="go">Continue to invites</button></section>`;
- [['t','title'],['d','desc'],['n','host'],['e','email'],['p','phone']].forEach(([i,k])=>{const x=$('#'+i);x.value=D[k]||'';x.oninput=()=>D[k]=x.value});
+ [['t','title'],['d','desc'],['l','loc'],['n','host'],['e','email'],['p','phone']].forEach(([i,k])=>{const x=$('#'+i);x.value=D[k]||'';x.oninput=()=>{D[k]=x.value;x.classList.remove('bad')}});
  picker($('#pk'),{slots:D.slots,max:10,min:2});
- $('#go').onclick=async()=>{if(!D.title.trim()||!D.host.trim()||!/\S+@\S+/.test(D.email))return toast('Please add a title, your name and a valid email.');
-  if(D.phone&&!e164(D.phone))return toast('That phone number doesn’t look right. Use 10 digits, or leave it blank.');if(D.slots.length<2)return toast('Pick at least 2 times (up to 10).');const id=rnd(),hk=rk();const mailTo=D.email,ttl=D.title;await put('events/'+id,{...D,final:null,hh:await sha(hk)});
-  try{const hl=base()+'#host-'+id+'-'+hk,jl=base()+'#join-'+id;await put('mail/'+id+'_h_0',{to:mailTo,message:{subject:'Your Get Together host link: '+ttl,text:`Your Get Together! “${ttl}” is ready.\n\nYour private host link (keep it to yourself, it shows all responses):\n${hl}\n\nInvite link to share with friends:\n${jl}\n\nGet Together! by Bruna Productions LLC 2026.`,html:`<p>Your Get Together! “${esc(ttl)}” is ready.</p><p><b>Your private host link</b> (keep it to yourself, it shows all responses):<br><a href="${hl}">${hl}</a></p><p><b>Invite link to share with friends:</b><br><a href="${jl}">${jl}</a></p><p style="font-size:12px;color:#555">Get Together! by Bruna Productions LLC 2026.</p>`}})}catch(e){}try{const L=JSON.parse(localStorage.getItem('gt-hosted')||'[]');L.unshift({id,hk,t:D.title});localStorage.setItem('gt-hosted',JSON.stringify(L.slice(0,20)))}catch(e){}D={title:'',desc:'',host:'',email:'',phone:'',slots:[]};location.hash='host-'+id+'-'+hk;toast('We emailed your private host link to '+esc(mailTo)+'. If you don’t see the email, check spam.')}}
+ const b=$('#go');b.onclick=()=>run(b,'Creating…',async()=>{
+  if(!D.title.trim())return err(b,'Please add a title for your Get Together.',['t']);
+  if(!D.host.trim())return err(b,'Please add your name.',['n']);
+  if(!/\S+@\S+\.\S+/.test(D.email))return err(b,'Please enter a valid email so we can send you your host link.',['e']);
+  if(D.phone&&!e164(D.phone))return err(b,'That phone number doesn’t look right. Use 10 digits, or leave it blank.',['p']);
+  if(D.slots.length<2)return err(b,'Pick at least 2 time windows on the calendar (up to 10).');
+  const id=rnd(),hk=rk(),mailTo=D.email,ttl=D.title,{loc,...pub}=D;
+  await put('events/'+id,{...pub,final:null,hh:await sha(hk)});
+  if(loc.trim()){await put('events/'+id+'/p/loc',{loc:loc.trim()});try{localStorage.setItem('gt-loc-'+id,loc.trim())}catch(e){}}
+  try{const hl=base()+'#h-'+id+'-'+hk,jl=base()+'#j-'+id;await put('mail/'+id+'_h_0',{to:mailTo,message:{subject:'Your Get Together host link: '+ttl,text:`Your Get Together! “${ttl}” is ready.\n\nYour private host link (keep it to yourself, it shows all responses):\n${hl}\n\nInvite link to share with friends:\n${jl}\n\nGet Together! by Bruna Productions LLC 2026.`,html:`<p>Your Get Together! “${esc(ttl)}” is ready.</p><p><b>Your private host link</b> (keep it to yourself, it shows all responses):<br><a href="${hl}">${hl}</a></p><p><b>Invite link to share with friends:</b><br><a href="${jl}">${jl}</a></p><p style="font-size:12px;color:#555">Get Together! by Bruna Productions LLC 2026.</p>`}})}catch(e){}
+  try{const L=JSON.parse(localStorage.getItem('gt-hosted')||'[]');L.unshift({id,hk,t:ttl});localStorage.setItem('gt-hosted',JSON.stringify(L.slice(0,20)))}catch(e){}
+  D={title:'',desc:'',host:'',email:'',phone:'',loc:'',slots:[]};location.hash='h-'+id+'-'+hk;toast('We emailed your private host link to '+esc(mailTo)+'. If you don’t see the email, check spam.')})}
 function dash(id,key){const khP=key?sha(key):Promise.resolve(null);let ev=null,R=[],tab='inv',sel=0,mode='one',txt=null,sent={};
+ const hostLoc=()=>{try{return localStorage.getItem('gt-loc-'+id)||''}catch(e){return ''}};
  app.innerHTML='<section class="card big">Loading…</section>';
  watch(id,(e,r)=>{if(e!==undefined)ev=e;if(r)R=r;khP.then(kh=>{if(ev&&ev.hh&&ev.hh!==kh){app.innerHTML='<section class="card big">This page needs your private host link.</section>';return}if(ev&&!$('.tabs'))shell();if(ev&&tab=='resp')resp();if(ev===null)app.innerHTML='<section class="card big">We couldn’t find that Get Together.</section>'})});
- function shell(){app.innerHTML=`<div class="tabs"><button data-t="inv">Invite</button><button data-t="resp">Responses</button></div><div id="pane"></div>`;
-  hostCard();$('.tabs').onclick=e=>{if(e.target.dataset.t){tab=e.target.dataset.t;mark();tab=='inv'?inv():resp()}};mark();inv()}
- const hostCard=()=>{if(!key)return;const hl=base()+'#host-'+id+'-'+key,tx=`Here is your private link to see responses for ${ev.title}. Keep it to yourself:\n${hl}\n\nShare this invite link with friends:\n${base()}#join-${id}`;
+ function shell(){app.innerHTML=`<div class="tabs"><button data-t="inv">Invite</button><button data-t="resp">Responses</button><button data-t="edit">Edit event</button></div><div id="pane"></div>`;
+  hostCard();$('.tabs').onclick=e=>{if(e.target.dataset.t){tab=e.target.dataset.t;mark();tab=='inv'?inv():tab=='resp'?resp():edit()}};mark();inv()}
+ const hostCard=()=>{if(!key)return;const hl=base()+'#h-'+id+'-'+key,tx=`Here is your private link to see responses for ${ev.title}. Keep it to yourself:\n${hl}\n\nShare this invite link with friends:\n${base()}#j-${id}`;
   const c=document.createElement('section');c.className='card';c.innerHTML='<h3 style="margin-top:0">Your private host link</h3><p class="hint">Bookmark this page or email the link to yourself. It’s how you come back to see responses. Don’t share it with friends.</p>'+mp()+'<div style="margin-top:12px"><a class="btn sm" id="hl" target="_top" rel="noopener" href="mailto:">Email it to me</a> <button class="btn alt sm" id="cp" type="button">Copy link</button>'+(ev.phone&&e164(ev.phone)?' <a class="btn alt sm" id="ht" target="_top" rel="noopener" href="sms:">Text it to me</a>':'')+'</div>';
   $('.tabs').before(c);$('#hl').onclick=e=>lk(e.currentTarget,url(ev.email,tx,'Your Get Together host link: '+ev.title));
   const ht=$('#ht');if(ht)ht.onclick=()=>lk(ht,url(e164(ev.phone),tx));
   $('#cp').onclick=async()=>{try{await navigator.clipboard.writeText(hl);toast('Host link copied.')}catch(x){prompt('Copy your host link:',hl)}}};
  const mark=()=>document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t==tab));
- function inv(){const link=base()+'#join-'+id;
+ function inv(){const link=base()+'#j-'+id;
   const msg=`Hi! ${ev.host} is inviting you for ${ev.title}. Before we send out the final invite, we would love for you to enter in some dates and times that work for you! We will then select the date and time that works for the most people! Use this link to let them know what dates work for you: ${link}`;
   $('#pane').innerHTML=`<section class="card"><h2>Who should we invite?</h2>
   <label>Phone numbers (SMS)<textarea id="ph" rows="3" placeholder="555-123-4567, one per line or comma separated"></textarea></label>
@@ -166,38 +189,63 @@ function dash(id,key){const khP=key?sha(key):Promise.resolve(null);let ev=null,R
    const done=()=>toast('Your messaging app is open with the message ready. Tap Send there to finish. Replies will show up in your Responses tab.');
    if(t.dataset.c){lk(t,url(t.dataset.c,m.value,'Get Together: '+ev.title));sent[t.dataset.c]=1;t.textContent='Opened ✓';done()}
    if(t.dataset.all!=null){const ph=parse($('#ph').value),em=parse($('#em').value);if(!ph.length&&!em.length){e.preventDefault();return toast('Add at least one phone number or email first.')}lk(t,ph.length?url(ph.join(','),m.value):url(em.join(','),m.value,'Get Together: '+ev.title));done();if(ph.length&&em.length)toast('Opened a group text for the phone numbers. Add only emails to send those next.')}}}
- function resp(){const A=R.filter(r=>!r.cancelled),top=best(ev,A);
-  $('#pane').innerHTML=`<section class="card"><h2>Best times</h2>${top.length?top.map((b,i)=>{const no=A.filter(r=>!b.ok.includes(r));
-   return`<div class="best${i?'':' top'}"><b>${esc(sl(b))}</b><br>Works for ${b.ok.length} of ${A.length}: ${esc(b.ok.map(r=>r.name).join(', '))}${no.length?`<div class="hint">Doesn’t work for ${esc(no.map(r=>r.name).join(', '))}</div>`:''}</div>`}).join(''):'<p class="hint">No two-hour overlap yet. Responses will appear here as friends reply.</p>'}
-  <button class="btn" id="tell" ${top.length?'':'disabled'}>Tell attendees about the best date</button></section>
+ function resp(){const A=R.filter(r=>!r.cancelled),top=best(ev,A),f=ev.final;
+  $('#pane').innerHTML=`<section class="card">${f?`<div class="how"><b>Date chosen: ${esc(sl(f))}</b><span>${hostLoc()?'Location: '+esc(hostLoc())+'. ':''}You can still choose a different date below.</span></div>`:''}<h2>Best times</h2>${top.length?top.map((b,i)=>{const no=A.filter(r=>!b.ok.includes(r));
+   return`<div class="best${i?'':' top'}"><b>${esc(sl(b))}</b><br>Works for ${b.ok.length} of ${A.length}: ${esc(b.ok.map(r=>r.name).join(', '))}${no.length?`<div class="hint">Doesn’t work for ${esc(no.map(r=>r.name).join(', '))}</div>`:''}</div>`}).join(''):'<p class="hint">No one has picked a time yet. Responses will appear here as friends reply.</p>'}
+  <button class="btn" id="tell">${f?'Choose a different date':'Tell attendees about the date'}</button></section>
   <section class="card"><h2>Responses (${A.length}${R.length>A.length?' active':''})</h2><div class="tw"><table><tr><th>Name</th><th>Contact</th><th>Guests</th><th>Dates that work</th><th>Message</th><th>RSVP</th></tr>
-  ${R.map(r=>`<tr${r.cancelled?' style="opacity:.5"':''}><td>${r.cancelled?`<button type="button" class="btn alt sm" data-rs="${r.id}">Restore</button> <span style="text-decoration:line-through">${esc(r.name)}</span> (cancelled)`:`<button type="button" class="xb" data-cx="${r.id}" title="Cancel this response" aria-label="Cancel this response">×</button>${esc(r.name)}`}</td><td>${esc(r.contact)}</td><td>${esc(r.count)}</td><td>${r.none?'<i>None of these dates work</i>':(r.slots||[]).map(s=>esc(sl(s))).join('<br>')}</td><td>${esc(r.msg||'')}</td>
-  <td><select data-r="${r.id}"><option value="">—</option><option value="yes"${r.rsvp?.r=='yes'?' selected':''}>Yes</option><option value="no"${r.rsvp?.r=='no'?' selected':''}>No</option></select>${r.rsvp?.n?'<br>'+esc(r.rsvp.n)+' going':''}${r.rsvp?.msg?'<div class="hint">'+esc(r.rsvp.msg)+'</div>':''}</td></tr>`).join('')}</table></div>
+  ${R.map(r=>`<tr${r.cancelled?' style="opacity:.5"':''}><td>${r.cancelled?`<button type="button" class="btn alt sm" data-rs="${r.id}">Restore</button> <span style="text-decoration:line-through">${esc(r.name)}</span> (cancelled)`:`<button type="button" class="xb" data-cx="${r.id}" title="Cancel this response" aria-label="Cancel this response">×</button>${esc(r.name)}`}</td><td>${esc(r.contact)}</td><td>${esc(r.rsvp?.n||'')}</td><td>${r.none?'<i>None of these dates work</i>':(r.slots||[]).map(s=>esc(sl(s))).join('<br>')}</td><td>${esc(r.msg||'')}</td>
+  <td><select data-r="${r.id}"><option value="">—</option><option value="yes"${r.rsvp?.r=='yes'?' selected':''}>Yes</option><option value="no"${r.rsvp?.r=='no'?' selected':''}>No</option></select>${r.rsvp?.msg?'<div class="hint">'+esc(r.rsvp.msg)+'</div>':''}</td></tr>`).join('')}</table></div>
   <button class="btn alt" id="csv">Download spreadsheet (CSV)</button></section><div id="tp"></div>`;
-  $('#pane').onchange=e=>{const s=e.target.closest('[data-r]');if(s){const r=R.find(x=>x.id==s.dataset.r);upd('events/'+id+'/r/'+r.id,{rsvp:{...(r.rsvp||{}),r:s.value}})}};
-  $('#pane').onclick=e=>{const b=e.target.closest('[data-cx],[data-rs]');if(!b)return;upd('events/'+id+'/r/'+(b.dataset.cx||b.dataset.rs),{cancelled:!!b.dataset.cx})};
-  $('#csv').onclick=async()=>{const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const csv=['Name,Contact,Guests,Dates,Message to host,RSVP,RSVP guests,RSVP message',...A.map(r=>[r.name,r.contact,r.count,r.none?'None of these dates work':(r.slots||[]).map(sl).join('; '),r.msg,r.rsvp?.r,r.rsvp?.n,r.rsvp?.msg].map(q).join(','))].join('\n');
-   {const bl=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='get-together-responses.csv';document.body.append(a);a.click();a.remove()}};
-  const t=$('#tell');t&&(t.onclick=()=>tellUI(top,A))}
- function tellUI(top,R){$('#tp').innerHTML=`<section class="card"><h2>Choose the date</h2>${top.map((b,i)=>`<label><input type="radio" name="w" style="width:auto" value="${i}" ${i==sel?'checked':''}> ${esc(sl(b))} (${b.ok.length} can make it)</label>`).join('')}
-  ${mp()}<label>Message <span class="opt">(edit if you like)</span><textarea id="fm" rows="6"></textarea></label><div id="fl"></div><button class="btn" id="fa">Email everyone who gave an email address</button><div class="hint">For phone numbers, tap each person’s button to open your messaging app with their own RSVP link ready to send.</div></section>`;
-  const fm=$('#fm'),mk=()=>{const b=top[sel];return`Thank you for filling out the dates that work for you for ${ev.host}’s ${ev.title} event! A date has been selected based on the most available date for attendees. ${ev.title} will be hosted on ${sl(b)}. RSVP to the host by responding to this message or click here to RSVP yes or no:`};
-  fm.value=mk();document.querySelectorAll('[name=w]').forEach(r=>r.onchange=()=>{sel=+r.value;fm.value=mk()});
-  const body=r=>fm.value+' '+base()+'#rsvp-'+id+'-'+r.id+'\n'+((top[sel].ok.includes(r))?'Good news: the date you picked was chosen!':'This date wasn’t one you picked, but we hope you can still make it.');
+  $('#pane').onchange=e=>{const s=e.target.closest('[data-r]');if(s){const r=R.find(x=>x.id==s.dataset.r);upd('events/'+id+'/r/'+r.id,{rsvp:{...(r.rsvp||{}),r:s.value}}).catch(()=>toast('That change didn’t save. Please try again.'))}};
+  $('#pane').onclick=e=>{const b=e.target.closest('[data-cx],[data-rs]');if(!b)return;upd('events/'+id+'/r/'+(b.dataset.cx||b.dataset.rs),{cancelled:!!b.dataset.cx}).catch(()=>toast('That change didn’t save. Please try again.'))};
+  $('#csv').onclick=()=>{const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const csv=['Name,Contact,Guests,Dates,Message to host,RSVP,RSVP message',...A.map(r=>[r.name,r.contact,r.rsvp?.n,r.none?'None of these dates work':(r.slots||[]).map(sl).join('; '),r.msg,r.rsvp?.r,r.rsvp?.msg].map(q).join(','))].join('\n');
+   const bl=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='get-together-responses.csv';document.body.append(a);a.click();a.remove()};
+  $('#tell').onclick=()=>tellUI(top,A)}
+ function tellUI(top,R){let C=[];if(!top.length)sel='x';else if(sel!=='x'&&sel>=top.length)sel=0;
+  const W=()=>sel==='x'?C[0]:top[sel],fits=(r,w)=>(r.slots||[]).some(s=>s.d==w.d&&s.a<=w.a&&s.b>=w.b);
+  $('#tp').innerHTML=`<section class="card"><h2>Choose the date</h2>${top.map((b,i)=>`<label><input type="radio" name="w" style="width:auto" value="${i}" ${i===sel?'checked':''}> ${esc(sl(b))} (${b.ok.length} can make it)</label>`).join('')}
+  <label><input type="radio" name="w" style="width:auto" value="x" ${sel==='x'?'checked':''}> A different date and time (I’ll pick it)</label>
+  <div id="cpk" style="display:${sel==='x'?'block':'none'}"><div id="cpk2"></div></div>
+  ${mp()}<label>Message <span class="opt">(edit if you like)</span><textarea id="fm" rows="7"></textarea></label>
+  <div class="hint">${hostLoc()?'The location you saved is included in this message.':'No location saved yet. Add one under Edit event if you want it included.'}</div>
+  <div id="fl"></div><button class="btn" id="fa">Email everyone who gave an email address</button><div class="hint">For phone numbers, tap each person’s button to open your messaging app with their own RSVP link ready to send.</div></section>`;
+  const fm=$('#fm'),mk=()=>{const w=W();if(!w)return'Pick a date and time above, then this message will fill in.';return`Thank you for filling out the dates that work for you for ${ev.host}’s ${ev.title} event! A date has been selected based on the most available date for attendees. ${ev.title} will be hosted on ${sl(w)}.${hostLoc()?' Location: '+hostLoc()+'.':''} RSVP to the host by responding to this message or click here to RSVP yes or no:`};
+  picker($('#cpk2'),{slots:C,max:1,replace:true,onchange:()=>fm.value=mk()});
+  fm.value=mk();document.querySelectorAll('[name=w]').forEach(r=>r.onchange=()=>{sel=r.value==='x'?'x':+r.value;$('#cpk').style.display=sel==='x'?'block':'none';fm.value=mk()});
+  const body=r=>{const w=W();return fm.value+' '+base()+'#r-'+id+'-'+r.id+'\n'+(fits(r,w)?'Good news: the date you picked was chosen!':'This date wasn’t one you picked, but we hope you can still make it.')};
   $('#fl').innerHTML=R.map(r=>`<div class="who"><span>${esc(r.name)} · ${esc(r.contact)}</span><span style="white-space:nowrap"><button type="button" class="btn alt sm" data-cs="${r.id}">Copy</button> <a class="btn sm" data-s="${r.id}" target="_top" rel="noopener" href="${r.contact.includes('@')?'mailto:':'sms:'}">${r.contact.includes('@')?'Open email':'Open text'}</a></span></div>`).join('');
-  const fin=async()=>{toast('Your messaging app is open with the message ready. Tap Send there to finish.');await upd('events/'+id,{final:top[sel]})};
-  $('#fa').onclick=async()=>{const em=R.filter(r=>r.contact.includes('@'));if(!em.length)return toast('No one gave an email address. Use the text buttons below.');
-  await upd('events/'+id,{final:top[sel]});const k=top[sel].d.replace(/-/g,'')+top[sel].a;let ok=0;
-  for(const r of em){try{await put('mail/'+id+'_c_'+r.id+'_'+k,{to:r.contact,message:{subject:'Get Together: '+ev.title,text:body(r)+'\n\nGet Together! by Bruna Productions LLC 2026.'}});ok++}catch(e){}}
-  toast(ok?ok+' email'+(ok==1?'':'s')+' sent. Use the buttons below to text anyone who gave a phone number.':'Those emails were already sent for this date.')};
-  $('#tp').onclick=e=>{const cs=e.target.dataset.cs;if(cs){copy(body(R.find(x=>x.id==cs)));upd('events/'+id,{final:top[sel]});return}const s=e.target.dataset.s;if(s){const r=R.find(x=>x.id==s);lk(e.target,url(r.contact,body(r),'Get Together: '+ev.title));fin()}};
-  
-  $('#tp').scrollIntoView({behavior:'smooth'})}}
-function attendee(id){let ev=null,S=[],none=false,RR=[],V={n:'',c:'',k:'',msg:''},mine=null;
+  const pw=()=>{const w=W();return w?{d:w.d,a:w.a,b:w.b}:null};
+  const setFinal=()=>upd('events/'+id,{final:pw()}).catch(()=>toast('The chosen date didn’t save. Please try again.'));
+  const fa=$('#fa');fa.onclick=()=>run(fa,'Sending…',async()=>{const w=pw();if(!w)return err(fa,'Pick a date and time first.');const em=R.filter(r=>r.contact.includes('@'));if(!em.length)return err(fa,'No one gave an email address. Use the buttons above to text people instead.');
+   await upd('events/'+id,{final:w});const k=w.d.replace(/-/g,'')+'t'+w.a+'t'+w.b;let ok=0;
+   for(const r of em){try{await put('mail/'+id+'_c_'+r.id+'_'+k,{to:r.contact,message:{subject:'Get Together: '+ev.title,text:body(r)+'\n\nGet Together! by Bruna Productions LLC 2026.'}});ok++}catch(e){}}
+   toast(ok?ok+' email'+(ok==1?'':'s')+' sent. Use the buttons above to text anyone who gave a phone number.':'Those emails were already sent for this date.')});
+  $('#tp').onclick=e=>{const cs=e.target.dataset.cs;if(cs){if(!pw())return toast('Pick a date and time first.');copy(body(R.find(x=>x.id==cs)));setFinal();return}const s=e.target.dataset.s;if(s){if(!pw()){e.preventDefault();return toast('Pick a date and time first.')}const r=R.find(x=>x.id==s);lk(e.target,url(r.contact,body(r),'Get Together: '+ev.title));toast('Your messaging app is open with the message ready. Tap Send there to finish.');setFinal()}};
+  $('#tp').scrollIntoView({behavior:'smooth'})}
+ function edit(){let E=(ev.slots||[]).map(x=>({...x}));
+  $('#pane').innerHTML=`<section class="card"><h2>Edit your Get Together</h2>
+  <label>Title <b>*</b><input id="et" value="${esc(ev.title)}"></label>
+  <label>Event description <span class="opt">(optional)</span><textarea id="ed" rows="4">${esc(ev.desc||'')}</textarea></label>
+  <label>Location or address <span class="opt">(optional)</span><input id="el" value="${esc(hostLoc())}" placeholder="123 Main St, or Joe’s Pizza"></label>
+  <div class="hint">Friends only see the address after you pick a final date. If it’s blank here on a new device, type it again to keep it.</div>
+  <div class="row"><label>Your name <b>*</b><input id="en" value="${esc(ev.host)}"></label><label>Your phone <span class="opt">(optional)</span><input id="ep" type="tel" value="${esc(ev.phone||'')}"></label></div>
+  <h3>Dates and times friends can choose from</h3><div id="epk"></div>
+  <div class="hint">Changes don’t notify friends. Answers they already sent are kept. After you change dates, check the Responses tab.</div>
+  <button class="btn" id="es">Save changes</button></section>`;
+  picker($('#epk'),{slots:E,max:10,min:2});
+  const b=$('#es');b.onclick=()=>run(b,'Saving…',async()=>{const t=$('#et').value.trim(),n=$('#en').value.trim(),p=$('#ep').value.trim(),l=$('#el').value.trim();
+   if(!t)return err(b,'Please add a title.',['et']);if(!n)return err(b,'Please add your name.',['en']);
+   if(p&&!e164(p))return err(b,'That phone number doesn’t look right. Use 10 digits, or leave it blank.',['ep']);
+   if(E.length<2)return err(b,'Keep at least 2 time windows on the calendar.');
+   await upd('events/'+id,{title:t,desc:$('#ed').value.trim(),host:n,phone:p,slots:E.map(x=>({...x}))});
+   await put('events/'+id+'/p/loc',{loc:l});try{localStorage.setItem('gt-loc-'+id,l)}catch(e){}
+   toast('Saved. Friends will see the changes the next time they open their link.');return false})}}
+function attendee(id){let ev=null,S=[],none=false,RR=[],V={n:'',c:'',msg:''},mine=null;
  try{mine=JSON.parse(localStorage.getItem('gt-r-'+id)||'null')}catch(e){}
  app.innerHTML='<section class="card big">Loading…</section>';
  const to=setTimeout(()=>{if(!ev)app.innerHTML='<section class="card big">We couldn’t find that Get Together.</section>'},10000);
- const tryFill=()=>{if(!ev||!mine||mine.filled)return;const x=RR.find(q=>q.id==mine.rid);if(!x)return;mine.filled=true;S.splice(0,S.length,...(x.slots||[]));none=!!x.none;V={n:x.name||'',c:x.contact||'',k:x.count||'',msg:x.msg||''};draw()};
+ const tryFill=()=>{if(!ev||!mine||mine.filled)return;const x=RR.find(q=>q.id==mine.rid);if(!x)return;mine.filled=true;S.splice(0,S.length,...(x.slots||[]));none=!!x.none;V={n:x.name||'',c:x.contact||'',msg:x.msg||''};draw()};
  watch(id,(e,r)=>{if(r)RR=r;if(e&&!ev){ev=e;clearTimeout(to);draw()}tryFill()});
  function draw(){const h=esc(ev.host);
  if(mine&&mine.v>=3){app.innerHTML=`<section class="card"><h2>All set!</h2><p>You’ve used all 3 updates to your response. Message ${h} directly if you need to change anything else.</p></section>`;return}
@@ -210,30 +258,41 @@ function attendee(id){let ev=null,S=[],none=false,RR=[],V={n:'',c:'',k:'',msg:''
  <label>Optional message to ${h}<textarea id="msg" rows="3" placeholder="Anything else ${h} should know?">${esc(V.msg)}</textarea></label>
  <label>Your name<input id="n" placeholder="Your name" autocomplete="name" value="${esc(V.n)}"></label>
  <label>Email or phone<input id="c" placeholder="Email or Phone number to let you know what date was selected." autocomplete="email" value="${esc(V.c)}"></label>
- <label>Number of attendees<input id="k" inputmode="numeric" placeholder="1" value="${esc(V.k)}"></label>
  <button class="btn" id="s">${mine?'Update my response for ':'Send my available dates to '}${h}</button></section>`;
  picker($('#pk'),{slots:S,allowed:ev.slots,max:10});
  const sync=()=>{$('#pk').style.display=none?'none':'';$('#no').classList.toggle('on',none);$('#no').textContent=none?'✓ None of these dates work for me':'None of these dates work for me'};
  sync();$('#no').onclick=()=>{none=!none;sync()};
- $('#s').onclick=async()=>{const n=$('#n').value.trim(),c=$('#c').value.trim();if(!n||!c||(!none&&!S.length))return toast('Add your name, how to reach you, and at least one time (or choose “None of these dates work for me”).');
-  const gc=$('#k').value.trim()||'1',gm=$('#msg').value.trim(),v=(mine?mine.v:0)+1,rid=mine?mine.rid:rnd();
-  if(v>3)return toast('You’ve used all 3 updates.');
-  const data={name:n,contact:c,count:gc,slots:none?[]:S.map(x=>({...x})),none,msg:gm,v};
+ document.querySelectorAll('#n,#c').forEach(x=>x.oninput=()=>x.classList.remove('bad'));
+ const b=$('#s');b.onclick=()=>run(b,'Sending…',async()=>{const n=$('#n').value.trim(),c=$('#c').value.trim(),gm=$('#msg').value.trim();
+  if(!none&&!S.length)return err(b,'Pick at least one time above, or choose “None of these dates work for me.”');
+  if(!n)return err(b,'Please add your name.',['n']);
+  if(!c)return err(b,'Please add your email or phone number so we can tell you which date was chosen.',['c']);
+  if(!okC(c))return err(b,'That email or phone number doesn’t look right. Double-check it so we can reach you.',['c']);
+  const v=(mine?mine.v:0)+1,rid=mine?mine.rid:rnd();if(v>3)return err(b,'You’ve used all 3 updates.');
+  const data={name:n,contact:c,slots:none?[]:S.map(x=>({...x})),none,msg:gm,v};
   if(mine)await upd('events/'+id+'/r/'+rid,data);else await put('events/'+id+'/r/'+rid,{...data,rsvp:null});
-  mine={rid,v,filled:true,done:true};V={n,c,k:gc,msg:gm};try{localStorage.setItem('gt-r-'+id,JSON.stringify({rid,v}))}catch(e){}
-  try{await put('mail/'+id+'_n_'+rid+(v>1?'_'+v:''),{to:ev.email,message:{subject:(v>1?'Updated response from ':'')+n+(v>1?'':' responded')+' for '+ev.title,text:`${n} (${c}) ${v>1?'updated their response (update '+(v-1)+' of 2)':'just responded'} for ${ev.title}.\n\n${none?'None of these dates work for them.':'Dates that work: '+S.map(sl).join('; ')}\nNumber of attendees: ${gc}${gm?'\nMessage: '+gm:''}\n\nTo see everyone’s responses, open your private host link (it’s in the email we sent when you created this event) and tap Responses.\n\nGet Together! by Bruna Productions LLC 2026.`}})}catch(e){}
+  mine={rid,v,filled:true};V={n,c,msg:gm};try{localStorage.setItem('gt-r-'+id,JSON.stringify({rid,v}))}catch(e){}
+  try{await put('mail/'+id+'_n_'+rid+(v>1?'_'+v:''),{to:ev.email,message:{subject:(v>1?'Updated response from ':'')+n+(v>1?'':' responded')+' for '+ev.title,text:`${n} (${c}) ${v>1?'updated their response (update '+(v-1)+' of 2)':'just responded'} for ${ev.title}.\n\n${none?'None of these dates work for them.':'Dates that work: '+S.map(sl).join('; ')}${gm?'\nMessage: '+gm:''}\n\nTo see everyone’s responses, open your private host link (it’s in the email we sent when you created this event) and tap Responses.\n\nGet Together! by Bruna Productions LLC 2026.`}})}catch(e){}
   app.innerHTML=`<section class="card"><h2>Thank you!</h2><p>Thank you for filling out the dates that work for you for ${h}’s ${esc(ev.title)} event! Once a date has been selected based on the most available date for attendees you will receive a confirmation on the email or phone number you provided above.</p>${v<3?`<button class="btn alt" id="chg">Change my response</button><p class="hint">You can update it ${3-v} more time${3-v==1?'':'s'}.</p>`:'<p class="hint">You’ve used all 3 updates to your response.</p>'}${ev.phone&&e164(ev.phone)?`<a class="btn" id="th" target="_top" rel="noopener" href="sms:">Text ${h} that I responded</a>`:''}</section>`;
-  const ch=$('#chg');if(ch)ch.onclick=()=>draw();const th=$('#th');if(th)th.onclick=()=>lk(th,url(e164(ev.phone),`Hi ${ev.host}! I just ${v>1?'updated':'sent'} my dates for ${ev.title}. - ${n}`))}}}
-function rsvp(id,rid){let ev=null,ans='yes';app.innerHTML='<section class="card big">Loading…</section>';
- let RR=[];watch(id,(e,r)=>{if(r)RR=r;if(e&&!ev){ev=e;draw()}});
- function pick(a){ans=a;document.querySelectorAll('.duo .btn').forEach(b=>b.classList.toggle('on',b.dataset.a==a));$('#q').innerHTML=a=='yes'?'<label>Fantastic! Tell us how many people will be attending!<input id="n" inputmode="numeric" placeholder="1"></label>':''}
+  const ch=$('#chg');if(ch)ch.onclick=()=>draw();const th=$('#th');if(th)th.onclick=()=>lk(th,url(e164(ev.phone),`Hi ${ev.host}! I just ${v>1?'updated':'sent'} my dates for ${ev.title}. - ${n}`))})}}
+function rsvp(id,rid){let ev=null,ans='yes',RR=[];app.innerHTML='<section class="card big">Loading…</section>';
+ watch(id,(e,r)=>{if(r)RR=r;if(e&&!ev){ev=e;draw()}});
+ function pick(a){ans=a;document.querySelectorAll('.duo .btn').forEach(b=>b.classList.toggle('on',b.dataset.a==a));$('#q').innerHTML=a=='yes'?'<label>Fantastic! Tell us how many people will be attending!<input id="n" inputmode="numeric" placeholder="1" value="1"></label>':''}
  function draw(){if(!ev.final){app.innerHTML=`<section class="card big">${esc(ev.host)} hasn’t picked a date yet. Check back soon!</section>`;return}
- app.innerHTML=`<section class="card"><h2>${esc(ev.host)}’s ${esc(ev.title)} will be hosted on ${esc(sl(ev.final))}!</h2><p>Let them know if you can make it.</p>
+ app.innerHTML=`<section class="card"><h2>${esc(ev.host)}’s ${esc(ev.title)} will be hosted on ${esc(sl(ev.final))}!</h2><div id="where"></div><p>Let them know if you can make it.</p>
  <div class="duo"><button class="btn" data-a="yes">I’ll be there!</button><button class="btn alt" data-a="no">Sorry I can’t make it then.</button></div>
  <div id="q"></div><label>Optional message<textarea id="m" rows="3"></textarea></label><button class="btn" id="s">Submit</button></section>`;
+ if(fs)fs.doc('events/'+id+'/p/loc').get().then(d=>{const l=d.exists&&d.data().loc;if(l)$('#where').innerHTML='<p><b>Where:</b> '+esc(l)+'</p>'}).catch(()=>{});
  $('.duo').onclick=e=>{const a=e.target.dataset.a;if(a)pick(a)};pick('yes');
- $('#s').onclick=async()=>{if(rid)await upd('events/'+id+'/r/'+rid,{rsvp:{r:ans,n:ans=='yes'?($('#n')?.value||'1'):'',msg:$('#m').value.trim()}});
-  if(rid){let rv=1;try{rv=(+localStorage.getItem('gt-v-'+id+rid)||0)+1;localStorage.setItem('gt-v-'+id+rid,rv)}catch(e){}const nm=(RR.find(x=>x.id==rid)||{}).name||'A guest',gn=ans=='yes'?($('#n')?.value||'1'):'',gm=$('#m').value.trim();if(rv<=3)try{await put('mail/'+id+'_v_'+rid+(rv>1?'_'+rv:''),{to:ev.email,message:{subject:nm+(ans=='yes'?' is coming to ':' can’t make ')+ev.title,text:`${nm} replied to ${ev.title} on ${sl(ev.final)}: ${ans=='yes'?'I’ll be there! ('+gn+' attending)':'Sorry, can’t make it.'}${gm?'\nMessage: '+gm:''}\n\nOpen your private host link and tap Responses to see everyone.\n\nGet Together! by Bruna Productions LLC 2026.`}})}catch(e){}}
-  app.innerHTML=`<section class="card"><h2>Thank you!</h2><p>Thank you for filling out the form! We will let ${esc(ev.host)} know about your response shortly.</p>${ev.phone&&e164(ev.phone)?`<a class="btn" id="th" target="_top" rel="noopener" href="sms:">Text ${esc(ev.host)} my answer</a>`:''}</section>`;{const th=$('#th');if(th)th.onclick=()=>lk(th,url(e164(ev.phone),`Hi ${ev.host}! ${ans=='yes'?'I’ll be there for':'Sorry, I can’t make'} ${ev.title}.`))}}}}
+ const b=$('#s');b.onclick=()=>run(b,'Submitting…',async()=>{
+  if(!rid)return err(b,'This link is missing your personal code. Please open the RSVP link from your message.');
+  let gn='';if(ans=='yes'){gn=($('#n').value||'').trim();if(!/^\d+$/.test(gn)||+gn<1)return err(b,'Please enter how many people will attend as a number, like 1 or 3.',['n'])}
+  const gm=$('#m').value.trim();
+  await upd('events/'+id+'/r/'+rid,{rsvp:{r:ans,n:gn,msg:gm}});
+  let rv=1;try{rv=(+localStorage.getItem('gt-v-'+id+rid)||0)+1;localStorage.setItem('gt-v-'+id+rid,rv)}catch(e){}
+  const nm=(RR.find(x=>x.id==rid)||{}).name||'A guest';
+  if(rv<=3)try{await put('mail/'+id+'_v_'+rid+(rv>1?'_'+rv:''),{to:ev.email,message:{subject:nm+(ans=='yes'?' is coming to ':' can’t make ')+ev.title,text:`${nm} replied to ${ev.title} on ${sl(ev.final)}: ${ans=='yes'?'I’ll be there! ('+gn+' attending)':'Sorry, can’t make it.'}${gm?'\nMessage: '+gm:''}\n\nOpen your private host link and tap Responses to see everyone.\n\nGet Together! by Bruna Productions LLC 2026.`}})}catch(e){}
+  app.innerHTML=`<section class="card"><h2>Thank you!</h2><p>Thank you for filling out the form! We will let ${esc(ev.host)} know about your response shortly.</p>${ev.phone&&e164(ev.phone)?`<a class="btn" id="th" target="_top" rel="noopener" href="sms:">Text ${esc(ev.host)} my answer</a>`:''}</section>`;
+  const th=$('#th');if(th)th.onclick=()=>lk(th,url(e164(ev.phone),`Hi ${ev.host}! ${ans=='yes'?'I’ll be there for':'Sorry, I can’t make'} ${ev.title}.`))})}}
 ready?route():app.innerHTML='<section class="card"><h2>Almost there</h2><p>Open index.html in a text editor and paste your Firebase settings into FIREBASE_CONFIG near the top of the script.</p></section>';
 </script></body></html>
