@@ -45,6 +45,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--g)}
 <div class="hero"><h1 class="logo">Get Together!</h1></div>
 <main id="app"></main>
 <footer>Get Together! by Bruna Productions LLC 2026.<br>Report Feedback &amp; Technical issues to <a href="mailto:brugoes@gmail.com">brugoes@gmail.com</a></footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 const $=(s,e=document)=>e.querySelector(s),app=$('#app');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -54,18 +56,18 @@ const dl=d=>new Date(d+'T00:00').toLocaleDateString(undefined,{weekday:'short',m
 const sl=s=>dl(s.d)+' '+fmt(s.a)+'–'+fmt(s.b),tm=v=>{const[a,b]=(v||'').split(':');return a==null||b==null||v===''?null:+a*60+ +b};
 const cmp=(x,y)=>x.d<y.d?-1:x.d>y.d?1:x.a-y.a,rnd=()=>Math.random().toString(36).slice(2,8);
 const base=()=>location.href.split('#')[0];
-let db=null,mem={},memSubs=[],unsub=[],tmr;
-(async()=>{try{db=await claude.use('db')}catch(e){}})();
+let unsub=[],tmr,memSubs=[];
 window.addEventListener('scroll',()=>document.body.classList.toggle('hero-on',scrollY<innerHeight*.3),{passive:true});
 function toast(t){clearTimeout(tmr);$('.toast')?.remove();const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.innerHTML='<button aria-label="Close">×</button>'+t;d.firstChild.onclick=()=>d.remove();document.body.append(d);tmr=setTimeout(()=>d.remove(),30000)}
-/* data layer: shared db when available, in-memory otherwise */
-const put=async(p,o)=>{if(db)return db.doc(p).set(o);mem[p]=o;memSubs.forEach(f=>f())};
-const upd=async(p,o)=>{if(db)return db.doc(p).update(o);mem[p]={...mem[p],...o};memSubs.forEach(f=>f())};
-function watch(id,cb){const tryDb=()=>{if(!db)return false;
- unsub.push(db.doc('events/'+id).onSnapshot(s=>cb(s.exists?s.data():null,null),()=>cb(null,null)));
- unsub.push(db.collection('events/'+id+'/r').onSnapshot(q=>cb(undefined,q.docs.map(d=>({id:d.id,...d.data()}))),()=>{}));return true};
- const loc=()=>cb(mem['events/'+id]||null,Object.keys(mem).filter(k=>k.startsWith('events/'+id+'/r/')).map(k=>({id:k.split('/').pop(),...mem[k]})));
- let n=0;const iv=setInterval(()=>{if(tryDb()||++n>20){clearInterval(iv);if(!db){memSubs.push(loc);loc()}}},150);unsub.push(()=>clearInterval(iv))}
+/* data layer: Firebase Firestore */
+const FIREBASE_CONFIG={apiKey:"AIzaSyDCFYKSDYqU3g5h50SWe5SqBZxu5uG226k",authDomain:"get-together-f1287.firebaseapp.com",projectId:"get-together-f1287",appId:"1:451640226307:web:d065705284f62a622ed436"};
+const ready=!FIREBASE_CONFIG.apiKey.startsWith('PASTE');let fs=null;
+if(ready){firebase.initializeApp(FIREBASE_CONFIG);fs=firebase.firestore()}
+const put=(p,o)=>fs.doc(p).set(o);
+const upd=(p,o)=>fs.doc(p).update(o);
+function watch(id,cb){
+ unsub.push(fs.doc('events/'+id).onSnapshot(s=>cb(s.exists?s.data():null,null),()=>cb(null,null)));
+ unsub.push(fs.collection('events/'+id+'/r').onSnapshot(q=>cb(undefined,q.docs.map(d=>({id:d.id,...d.data()})))))}
 /* date/time picker: tap start then end, or drag with a mouse */
 function picker(el,o){const S=o.slots,A=o.allowed;
  const N=A?[...new Set(A.map(s=>s.d))].sort():null,maxWk=A?Math.ceil(N.length/7)-1:51;let wk=0;const view=()=>A?N.slice(wk*7,wk*7+7):Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()+wk*7+i);return iso(d)});
@@ -153,7 +155,7 @@ function dash(id){let ev=null,R=[],tab='inv',sel=0,mode='one',txt=null,sent={};
   <button class="btn alt" id="csv">Download spreadsheet (CSV)</button></section><div id="tp"></div>`;
   $('#pane').onchange=e=>{const s=e.target.closest('[data-r]');if(s){const r=R.find(x=>x.id==s.dataset.r);upd('events/'+id+'/r/'+r.id,{rsvp:{...(r.rsvp||{}),r:s.value}})}};
   $('#csv').onclick=async()=>{const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const csv=['Name,Contact,Guests,Dates,RSVP,RSVP guests,Message',...R.map(r=>[r.name,r.contact,r.count,(r.slots||[]).map(sl).join('; '),r.rsvp?.r,r.rsvp?.n,r.rsvp?.msg].map(q).join(','))].join('\n');
-   try{const d=await claude.use('downloads');if(!d)throw 0;await d.save({filename:'get-together-responses.csv',data:csv})}catch(e){toast('Download isn’t available here.')}};
+   {const bl=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='get-together-responses.csv';document.body.append(a);a.click();a.remove()}};
   const t=$('#tell');t&&(t.onclick=()=>tellUI(top,R))}
  function tellUI(top,R){$('#tp').innerHTML=`<section class="card"><h2>Choose the date</h2>${top.map((b,i)=>`<label><input type="radio" name="w" style="width:auto" value="${i}" ${i==sel?'checked':''}> ${esc(sl(b))} (${b.ok.length} can make it)</label>`).join('')}
   <label>Message <span class="opt">(edit if you like)</span><textarea id="fm" rows="6"></textarea></label><div id="fl"></div><div class="hint">Tap each person’s button to open your messaging app with their own RSVP link ready to send.</div></section>`;
@@ -189,5 +191,5 @@ function rsvp(id,rid){let ev=null,ans=null;app.innerHTML='<section class="card b
  $('#s').onclick=async()=>{if(!ans)return toast('Please choose one of the two buttons.');
   if(rid)await upd('events/'+id+'/r/'+rid,{rsvp:{r:ans,n:ans=='yes'?($('#n')?.value||'1'):'',msg:$('#m').value.trim()}});
   app.innerHTML=`<section class="card"><h2>Thank you!</h2><p>Thank you for filling out the form! We will let ${esc(ev.host)} know about your response shortly.</p></section>`}}}
-route();
+ready?route():app.innerHTML='<section class="card"><h2>Almost there</h2><p>Open index.html in a text editor and paste your Firebase settings into FIREBASE_CONFIG near the top of the script.</p></section>';
 </script></body></html>
