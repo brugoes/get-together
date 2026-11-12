@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <meta name="theme-color" content="#1E8449">
 <title>Get Together!</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap">
@@ -51,6 +52,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--g)}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
+const BUILD='1794435950';
+(async()=>{try{const r=await fetch(location.origin+location.pathname+'?nc='+Date.now(),{cache:'no-store'}),t=await r.text(),m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('gt-rl')){sessionStorage.setItem('gt-rl','1');location.reload()}else sessionStorage.removeItem('gt-rl')}catch(e){}})();
 const $=(s,e=document)=>e.querySelector(s),app=$('#app');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const p2=n=>String(n).padStart(2,'0'),iso=d=>d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
@@ -58,7 +61,7 @@ const fmt=m=>{const h=Math.floor(m/60),i=m%60;return((h+11)%12+1)+(i?':'+p2(i):'
 const dl=d=>new Date(d+'T00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
 const sl=s=>dl(s.d)+' '+fmt(s.a)+'–'+fmt(s.b),tm=v=>{const[a,b]=(v||'').split(':');return a==null||b==null||v===''?null:+a*60+ +b};
 const cmp=(x,y)=>x.d<y.d?-1:x.d>y.d?1:x.a-y.a,rnd=()=>Math.random().toString(36).slice(2,8);
-const base=()=>location.href.split('#')[0];
+const base=()=>location.origin+location.pathname;
 let unsub=[],tmr,memSubs=[];
 window.addEventListener('scroll',()=>document.body.classList.toggle('hero-on',scrollY<innerHeight*.3),{passive:true});
 function toast(t){clearTimeout(tmr);$('.toast')?.remove();const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.innerHTML='<button aria-label="Close">×</button>'+t;d.firstChild.onclick=()=>d.remove();document.body.append(d);tmr=setTimeout(()=>d.remove(),30000)}
@@ -79,6 +82,7 @@ function picker(el,o){const S=o.slots,A=o.allowed;
  const wins=()=>A?A.filter(s=>s.d==day):[{d:day,a:420,b:1380}];
  const inA=m=>wins().some(w=>m>=w.a&&m<w.b);
  const covers=w=>S.some(s=>s.d==w.d&&s.a<=w.a&&s.b>=w.b);
+ const WK=new Set(),wkey=w=>w.d+'|'+w.a+'-'+w.b,isOn=w=>WK.has(wkey(w))&&covers(w);
  function put1(d,a,b){let n={d,a,b};for(let i=S.length-1;i>=0;i--){const s=S[i];if(s.d==d&&s.a<=n.b&&s.b>=n.a){n.a=Math.min(n.a,s.a);n.b=Math.max(n.b,s.b);S.splice(i,1)}}S.push(n);S.sort(cmp)}
  function cut(d,a,b){for(let i=S.length-1;i>=0;i--){const s=S[i];if(s.d==d&&s.a<b&&s.b>a){S.splice(i,1);if(s.a<a)S.push({d,a:s.a,b:a});if(s.b>b)S.push({d,a:b,b:s.b})}}S.sort(cmp)}
  function add(a,b){if(a>b)[a,b]=[b,a];if(a==b)return;const bak=S.slice();if(o.replace)S.splice(0,S.length);
@@ -92,7 +96,7 @@ function picker(el,o){const S=o.slots,A=o.allowed;
   el.innerHTML=`${A&&maxWk==0?'':`<div class="nav"><button type="button" class="car" data-wk="-1" aria-label="Previous week" ${wk?'':'disabled'}>‹</button><span>${esc(dl(v[0]))} – ${esc(dl(v[v.length-1]))}</span><button type="button" class="car" data-wk="1" aria-label="Next week" ${wk<maxWk?'':'disabled'}>›</button></div>`}
   <div class="chips">${v.map(d=>`<button type="button" class="chip${d==day?' on':''}" data-d="${d}"><b>${dl(d).split(',')[0]}</b>${dl(d).split(', ')[1]}${S.some(s=>s.d==d)?' ✓':''}</button>`).join('')}</div>
   <div class="daybar">Choosing times for ${esc(dl(day))}</div>
-  ${A?`<div class="whole">${wins().map(w=>`<button type="button" class="btn alt${covers(w)?' on':''}" data-w="${w.a}-${w.b}">${covers(w)?'✓ ':''}I’m free the whole window on ${esc(dl(day))}: ${fmt(w.a)} – ${fmt(w.b)}</button>`).join('')}<div class="hint">This button applies to ${esc(dl(day))} only. Pick each date you’re free.</div></div>`:''}
+  ${A?`<div class="whole">${wins().map(w=>`<button type="button" class="btn alt${isOn(w)?' on':''}" data-w="${w.a}-${w.b}" aria-pressed="${isOn(w)}">${isOn(w)?'✓ ':''}I’m free the whole window on ${esc(dl(day))}: ${fmt(w.a)} – ${fmt(w.b)}</button>`).join('')}<div class="hint">This button applies to ${esc(dl(day))} only. Pick each date you’re free.</div></div>`:''}
   <div class="how"><b>${pend!=null?'Starting at '+fmt(pend)+'. Now tap the last half-hour you’re free.':'Select the times you’re free on '+esc(dl(day))}</b><span>${pend!=null?'The block you tap is included. Tap the same block again to select just that half-hour.':'On a phone, tap the first half-hour you’re free, then tap the last one. On a computer, click and drag. Both blocks you pick are included.'}</span></div>
   <div class="grid">${g}</div>
   <div style="margin-top:10px">${S.length?S.map((s,i)=>`<span class="tag">${esc(sl(s))}<button type="button" aria-label="Remove ${esc(sl(s))}" data-x="${i}">×</button></span>`).join(''):'<span class="hint">No times picked yet.</span>'}</div>
@@ -100,7 +104,7 @@ function picker(el,o){const S=o.slots,A=o.allowed;
  el.onclick=e=>{const t=e.target.closest('[data-d],[data-m],[data-x],[data-wk],[data-w]');if(!t)return;
   if(t.dataset.wk){wk=Math.max(0,Math.min(maxWk,wk+ +t.dataset.wk));day=view()[0];pend=null;draw()}
   else if(t.dataset.d){day=t.dataset.d;pend=null;draw()}
-  else if(t.dataset.w){const[a,b]=t.dataset.w.split('-').map(Number),w={d:day,a,b};if(covers(w))cut(day,a,b);else add(a,b);pend=null;draw();o.onchange&&o.onchange()}
+  else if(t.dataset.w){const[a,b]=t.dataset.w.split('-').map(Number),w={d:day,a,b};if(isOn(w)){cut(day,a,b);WK.delete(wkey(w))}else{add(a,b);WK.add(wkey(w))}pend=null;draw();o.onchange&&o.onchange()}
   else if(t.dataset.x!=null){S.splice(+t.dataset.x,1);draw();o.onchange&&o.onchange()}
   else{const m=+t.dataset.m;if(!inA(m))return;if(pend==null){pend=m;draw()}else add(Math.min(pend,m),Math.max(pend,m)+30)}};
  el.onpointerdown=e=>{const c=e.target.closest('[data-m]');dn=c&&e.pointerType==='mouse'?+c.dataset.m:null};
